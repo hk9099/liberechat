@@ -5,7 +5,7 @@ services:
     #   context: .
     #   dockerfile: Dockerfile.multi
     #   target: api-build
-    image: ghcr.io/hk9099/librechat-dev-api:latest
+    image: ghcr.io/hk9099/liberechat:latest
     container_name: LibreChat-API
     ports:
       - 3080:3080
@@ -76,7 +76,7 @@ services:
     volumes:
       - pgdata2:/var/lib/postgresql/data
   rag_api:
-    image: ghcr.io/hk9099/librechat-rag-api-dev-lite:latest
+    image: ghcr.io/hk9099/liberechat:latest
     environment:
       - DB_HOST=vectordb
       - RAG_PORT=${RAG_PORT:-8000}
