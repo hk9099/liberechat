@@ -1,8 +1,8 @@
 require('dotenv').config();
 
 const crypto = require('crypto');
-const key = Buffer.from(process.env.CREDS_KEY, 'hex');
-const iv = Buffer.from(process.env.CREDS_IV, 'hex');
+const key = Buffer.from('f34be427ebb29de8d88c107a71546019685ed8b241d8f2ed00c3df97ad2566f0', 'hex');
+const iv = Buffer.from('e2341419ec3dd3d19b13a1a87fafcbfb', 'hex');
 const algorithm = 'aes-256-cbc';
 
 function encrypt(value) {

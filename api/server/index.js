@@ -23,6 +23,10 @@ const { PORT, HOST, ALLOW_SOCIAL_LOGIN } = process.env ?? {};
 const port = Number(PORT) || 3080;
 const host = HOST || 'localhost';
 
+console.log('PORT:', PORT);
+console.log('HOST:', HOST);
+console.log('ALLOW_SOCIAL_LOGIN:', ALLOW_SOCIAL_LOGIN);
+
 const startServer = async () => {
   if (typeof Bun !== 'undefined') {
     axios.defaults.headers.common['Accept-Encoding'] = 'gzip';
@@ -49,18 +53,18 @@ const startServer = async () => {
   app.set('trust proxy', 1); // trust first proxy
   app.use(cors());
 
-  if (!ALLOW_SOCIAL_LOGIN) {
-    console.warn(
-      'Social logins are disabled. Set Environment Variable "ALLOW_SOCIAL_LOGIN" to true to enable them.',
-    );
-  }
+  // if (!ALLOW_SOCIAL_LOGIN) {
+  //   console.warn(
+  //     'Social logins are disabled. Set Environment Variable "ALLOW_SOCIAL_LOGIN" to true to enable them.',
+  //   );
+  // }
 
   // OAUTH
   app.use(passport.initialize());
   passport.use(await jwtLogin());
   passport.use(passportLogin());
 
-  if (isEnabled(ALLOW_SOCIAL_LOGIN)) {
+  if (isEnabled(true)) {
     configureSocialLogins(app);
   }
 
